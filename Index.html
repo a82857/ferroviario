@@ -1,0 +1,1332 @@
+<!doctype html>
+<html lang="pt-PT" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferroviário - Marisqueira Portuguesa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&amp;family=Inter:wght@300;400;500;600&amp;family=Lato:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Ajuste aqui a escuridão da imagem bg.png (0 = sem escurecer, 1 = muito escuro) */
+      --hero-bg-darken: 0.55;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #faf8f5;
+      color: #3a3a38;
+      overflow-x: hidden;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: #faf8f5;
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(61, 40, 23, 0.86) 0%, rgba(90, 61, 46, 0.86) 50%, rgba(42, 24, 16, 0.9) 100%),
+        url('bg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-blend-mode: overlay;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(57, 28, 1, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(90, 61, 46, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, var(--hero-bg-darken));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 4rem 2rem;
+    }
+
+    .hero-logo {
+      width: 500px;
+      height: auto;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+    }
+
+    .hero-logo-placeholder {
+      font-size: 0.85rem;
+      color: rgba(212, 197, 185, 0.5);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .restaurant-name {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 400;
+      color: #f5f0eb;
+      letter-spacing: 0.08em;
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    .restaurant-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      font-weight: 300;
+      color: #d4c5b9;
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      text-transform: lowercase;
+      margin-top: -0.3em;
+    }
+
+    .slogan {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      color: #d4c5b9;
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      text-transform: lowercase;
+    }
+
+    .slogan::first-letter {
+      text-transform: uppercase;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.95rem 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .btn-menu-large {
+      padding: 1.2rem 3.5rem;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-primary {
+      background-color: #3d2817;
+      color: #f5f0eb;
+      border: 2px solid #3d2817;
+    }
+
+    .btn-primary:hover {
+      background-color: #2a1810;
+      border-color: #2a1810;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #f5f0eb;
+      color: #2a1810;
+      border: 2px solid #f5f0eb;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d4c5b9;
+      color: #2a1810;
+      transform: translateY(-2px);
+    }
+
+    .hero-subtext {
+      font-size: 0.85rem;
+      color: #f5f0eb;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 9, 6, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(245, 240, 235, 0.08);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(61, 40, 23, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.5rem;
+      color: #f5f0eb;
+      letter-spacing: 0.06em;
+      font-weight: 400;
+    }
+
+    .nav-logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: filter 0.3s ease;
+    }
+
+    .nav-logo-img.on-dark {
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-logo-img.on-light {
+      filter: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-action-btn {
+      padding: 0.2rem 0.4rem;
+      border-radius: 0;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #d4c5b9;
+      background: transparent;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-action-btn:hover {
+      color: #f5f0eb;
+      transform: translateY(-1px);
+    }
+
+    .nav-action-btn--primary {
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 240, 235, 0.7);
+      color: #f5f0eb;
+      background: transparent;
+    }
+
+    .nav-action-btn--primary:hover {
+      background: #f5f0eb;
+      color: #2a1810;
+      border-color: #f5f0eb;
+    }
+
+    /* About Section */
+    .about {
+      padding: 6rem 2rem;
+      width: 100%;
+      margin: 0;
+      min-height: 500px;
+      background-image: url('texto.png');
+      background-repeat: no-repeat;
+      background-position: center 70%;
+      background-size: cover;
+    }
+
+    .section-title {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: #4a3220;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(to right, #112A16, #391C01);
+      margin: 0 auto 3rem;
+    }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #3a3a38;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      letter-spacing: 0.01em;
+    }
+
+    /* Specialties Section */
+    .specialties {
+      padding: 6rem 2rem;
+      background-color: #3d2817;
+    }
+
+    .specialties-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .specialties .section-title {
+      color: #f5f0eb;
+    }
+
+    .specialties .section-divider {
+      background-color: #391c01;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #4a3220, #3d2817);
+      border: 2px solid #391C01;
+      border-top-color: #112A16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      border-color: rgba(245, 240, 235, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .gallery-item-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-title {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.3rem;
+      color: #f5f0eb;
+      margin-top: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .gallery-desc {
+      font-size: 0.85rem;
+      color: #d4c5b9;
+      margin-top: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Gallery horizontal scroll */
+    .gallery-scroll {
+      margin-top: 3rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .gallery-scroll::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-scroll::-webkit-scrollbar-thumb {
+      background: rgba(245, 240, 235, 0.45);
+      border-radius: 999px;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      padding-left: calc(50% - 140px);
+      padding-right: calc(50% - 140px);
+      box-sizing: content-box;
+    }
+
+    .gallery-slide {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      flex: 0 0 280px;
+      width: 280px;
+      min-width: 280px;
+      background: linear-gradient(135deg, #4a3220, #3d2817);
+      border: 2px solid #391C01;
+      border-top-color: #112A16;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .gallery-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Primeira foto: PNG com faixa clara à direita — cobrir com overflow + recorte */
+    .gallery-slide:first-of-type .gallery-image-wrapper {
+      background: #2a1810;
+    }
+
+    .gallery-image-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 20px);
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 8% center;
+    }
+
+    /* Menu Section */
+    .menu {
+      padding: 6rem 2rem;
+      background-color: #faf8f5;
+      text-align: center;
+    }
+
+    .menu-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .menu-note {
+      font-size: 0.9rem;
+      color: #6b5f54;
+      font-style: italic;
+      margin-top: 2rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 6rem 2rem;
+      background-color: #3d2817;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact .section-title {
+      color: #f5f0eb;
+    }
+
+    .contact .section-divider {
+      background-color: #391c01;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .info-block {
+      border-left: 3px solid #391C01;
+      border-top: 1px solid #112A16;
+      padding-left: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .info-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: #d4c5b9;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.4rem;
+      color: #f5f0eb;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .info-value a {
+      color: #f5f0eb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .info-value a:hover {
+      color: #d4c5b9;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .hours-item {
+      text-align: left;
+      padding: 0.75rem;
+      background-color: rgba(122, 90, 71, 0.25);
+      border-radius: 2px;
+    }
+
+    .hours-day {
+      font-size: 0.8rem;
+      color: #d4c5b9;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hours-time {
+      font-size: 0.9rem;
+      color: #f5f0eb;
+      margin-top: 0.25rem;
+    }
+
+    .hours-closed {
+      color: #8b7355;
+      font-style: italic;
+    }
+
+    /* Map Container */
+    .map-container {
+      width: 100%;
+      height: 400px;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 240, 235, 0.15);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-attribution {
+      font-size: 0.75rem;
+      color: #d4c5b9;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 6rem 2rem;
+      background-color: #faf8f5;
+    }
+
+    .testimonials-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonials .section-title {
+      color: #112a16;
+      margin-bottom: 0.2rem;
+    }
+
+    .testimonials .section-divider {
+      background-color: #391c01;
+      margin: 0.35rem auto 0;
+    }
+
+    .trustindex-widget-wrap {
+      margin-top: -0.85rem;
+      min-height: 120px;
+    }
+
+    /* TrustIndex costuma injectar wrappers com margem própria */
+    .trustindex-widget-wrap > * {
+      margin-top: 0 !important;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* Social Section */
+    .social-section {
+      padding: 3rem 2rem;
+      background-color: #faf8f5;
+      text-align: center;
+      border-top: 1px solid rgba(17, 42, 22, 0.1);
+    }
+
+    .social-label {
+      font-size: 0.85rem;
+      color: #6b5f54;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .social-icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: 0 0.75rem;
+      border: 2px solid #391C01;
+      border-bottom-color: #112A16;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #3d2817;
+      font-size: 1.2rem;
+    }
+
+    .social-icon:hover {
+      background-color: #3d2817;
+      color: #f5f0eb;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      background-color: #2a1810;
+      text-align: center;
+      color: #6b5f54;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Utility Classes */
+    .divider-vertical {
+      width: 1px;
+      background-color: rgba(122, 90, 71, 0.3);
+    }
+
+    /* Section reveal – dynamic tilt + lift (hero e contact sem animação) */
+    section.hero,
+    section.contact {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    section:not(.hero):not(.contact) {
+      opacity: 0;
+      transform: translateY(60px) scale(0.94) rotateX(4deg);
+      transform-origin: center top;
+      transition:
+        opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: opacity, transform;
+    }
+
+    section:not(.hero):not(.contact):nth-of-type(2n) {
+      transform: translateY(60px) scale(0.94) rotateX(-4deg);
+    }
+
+    section:not(.hero):not(.contact).section-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-logo {
+        width: 340px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .about, .specialties, .menu, .contact {
+        padding: 4rem 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-container {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .restaurant-name {
+        font-size: 2rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-block {
+        padding-left: 1.5rem;
+      }
+
+      .info-value {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper">
+   <!-- Navigation -->
+   <nav id="navbar">
+    <div id="nav-logo-container" style="width: 80px; height: 80px; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: transparent; flex-shrink: 0;">
+     <img src="logowbg.png" alt="Ferroviário" class="nav-logo-img on-dark">
+    </div>
+    <div class="nav-actions">
+     <a href="Menu3.pdf" target="_blank" rel="noopener noreferrer" class="nav-action-btn">Menu</a>
+     <a href="tel:252414190" class="nav-action-btn nav-action-btn--primary">
+      <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <rect x="7" y="3" width="10" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+        <circle cx="12" cy="17.5" r="0.9" fill="currentColor"/>
+        <rect x="9" y="5" width="6" height="0.8" rx="0.4" fill="currentColor"/>
+       </svg>
+       <span>Reservar</span>
+      </span>
+     </a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="hero" id="home">
+    <div class="hero-content">
+     <div class="hero-logo" id="hero-logo-container" style="border: none; background: transparent;">
+      <img src="letraswbg.png" alt="o̱ Ferroviário · cervejaria &amp; marisqueira" style="max-width: 100%; height: auto; object-fit: contain; filter: brightness(0) invert(1);">
+     </div>
+     <p class="slogan" id="hero-slogan"><strong>A sua próxima paragem gastronómica.</strong></p>
+     <div class="hero-actions">
+      <a href="tel:252414190" class="btn btn-primary" id="call-btn">Ligar para Reservar</a> <a href="Menu3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ver Menu</a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section class="about" id="about">
+    <h2 class="section-title" id="about-title">A Nossa História</h2>
+    <div class="section-divider"></div>
+    <p class="about-text" id="about-body">Durante décadas, este edifício foi um ponto de passagem, aqui cruzavam-se caminhos, histórias, partidas e regressos. Onde antes se esperava pelo próximo comboio, hoje espera-se apenas pelo próximo prato, onde antes se ouviam carris, hoje queremos que se ouçam brindes, conversas e risos. Este espaço, que fez parte da memória coletiva da Trofa, renasce agora como restaurante, mantendo a sua vocação original, ligar pessoas. Ligamos o mar à cidade, através de uma marisqueira de inspiração atlântica. Ligamos a tradição ao presente, com uma cervejaria pensada para partilhar. Ligamos o passado ao futuro, respeitando a história do lugar e criando novas memórias à mesa.<br><br>
+      <strong>Bem-vindos a um antigo ponto de partida que agora é, acima de tudo, um destino.</strong></p>
+   </section><!-- Specialties Section -->
+   <section class="specialties" id="specialties">
+    <div class="specialties-inner">
+     <h2 class="section-title">Galeria</h2>
+     <div class="section-divider"></div>
+     <div class="gallery-scroll">
+      <div class="gallery-track">
+       <article class="gallery-slide">
+        <div class="gallery-image-wrapper">
+         <img src="Galeria/foto1.png" alt="Vista exterior do Ferroviário" class="gallery-image gallery-image-first" loading="lazy">
+        </div>
+       </article>
+       <article class="gallery-slide">
+        <div class="gallery-image-wrapper">
+         <img src="Galeria/foto5.jpg" alt="Detalhe da sala e ambiente" class="gallery-image" loading="lazy">
+        </div>
+       </article>
+       <article class="gallery-slide">
+        <div class="gallery-image-wrapper">
+         <img src="Galeria/foto2.png" alt="Pormenor da esplanada do restaurante" class="gallery-image" loading="lazy">
+        </div>
+       </article>
+       <article class="gallery-slide">
+        <div class="gallery-image-wrapper">
+         <img src="foto10.jpg" alt="Mesa preparada com marisco e cerveja" class="gallery-image" loading="lazy">
+        </div>
+       </article>
+       <article class="gallery-slide">
+        <div class="gallery-image-wrapper">
+         <img src="Galeria/foto6.jpg" alt="Detalhe do interior do antigo edifício da estação" class="gallery-image" loading="lazy">
+        </div>
+       </article>
+      </div>
+     </div>
+    </div>
+   </section><!-- Menu Section -->
+   <section class="menu" id="menu">
+    <div class="menu-inner">
+     <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+      <a href="Menu3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-menu-large" style="margin: 0;">Menu</a>
+     </div>
+     <p class="menu-note">Menu sujeito à disponibilidade diária do marisco.</p>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="testimonials" id="testimonials">
+    <div class="testimonials-inner">
+     <h2 class="section-title">O que os clientes acham sobre nós</h2>
+     <div class="section-divider"></div>
+     <div class="trustindex-widget-wrap"></div>
+     <script defer async src="https://cdn.trustindex.io/loader.js?28c69d468dec123656367d3fb52"></script>
+    </div>
+   </section><!-- Contact Section -->
+   <section class="contact" id="contact">
+    <div class="contact-inner">
+     <h2 class="section-title">Localização &amp; Contacto</h2>
+     <div class="section-divider"></div>
+     <div class="contact-content">
+      <!-- Contact Info -->
+      <div class="contact-info">
+       <div class="info-block">
+        <p class="info-label">Telefone</p>
+        <p class="info-value"><a href="tel:252414190" id="contact-phone">252 414 190</a></p>
+       </div>
+       <div class="info-block">
+        <p class="info-label">Horário</p>
+        <div class="hours-grid">
+         <div class="hours-item">
+          <div class="hours-day">
+           Segunda
+          </div>
+          <div class="hours-time">
+           12:00 – 15:00
+          </div>
+          <div class="hours-time">
+           19:00 – 00:00
+          </div>
+         </div>
+         <div class="hours-item">
+          <div class="hours-day">
+           Terça
+          </div>
+          <div class="hours-time">
+           12:00 – 15:00
+          </div>
+          <div class="hours-time">
+           19:00 – 00:00
+          </div>
+         </div>
+         <div class="hours-item">
+          <div class="hours-day">
+           Quarta
+          </div>
+          <div class="hours-time hours-closed">
+           Encerrados
+          </div>
+         </div>
+         <div class="hours-item">
+          <div class="hours-day">
+           Quinta
+          </div>
+          <div class="hours-time">
+           12:00 – 15:00
+          </div>
+          <div class="hours-time">
+           19:00 – 00:00
+          </div>
+         </div>
+         <div class="hours-item">
+          <div class="hours-day">
+           Sexta
+          </div>
+          <div class="hours-time">
+           12:00 – 15:00
+          </div>
+          <div class="hours-time">
+           19:00 – 00:00
+          </div>
+         </div>
+         <div class="hours-item">
+          <div class="hours-day">
+           Sábado
+          </div>
+          <div class="hours-time">
+           12:00 – 15:00
+          </div>
+          <div class="hours-time">
+           19:00 – 02:00
+          </div>
+         </div>
+         <div class="hours-item" style="grid-column: 1;">
+          <div class="hours-day">
+           Domingo
+          </div>
+          <div class="hours-time">
+           18:00 – 00:00
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Map Section -->
+      <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(245, 240, 235, 0.1);">
+       <p class="info-label" style="margin-bottom: 1.5rem;">Localização no Mapa</p>
+       <div class="map-container"><iframe src="https://www.google.com/maps?q=Alameda%20da%20Esta%C3%A7%C3%A3o%2C%204734-000%20Trofa&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       </div>
+       <p class="map-attribution">Alameda da Estação, 4734-000 Trofa</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Social Section -->
+   <section class="social-section">
+   <p class="social-label">Siga-nos nas redes sociais</p>
+   <div class="social-icons">
+    <a href="https://instagram.com/oferroviario_" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram" id="instagram-icon">
+     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" /></svg>
+    </a>
+    <a href="https://www.facebook.com/share/17U8gckij3/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-icon" title="Facebook" id="facebook-icon">
+     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+    </a>
+   </div>
+    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #6b5f54;">Acompanhe o nosso menu executivo e novidades em <a href="https://instagram.com/oferroviario_" target="_blank" rel="noopener noreferrer" style="color: #112a16; text-decoration: none; font-weight: 500;" id="instagram-link">@oferroviario_</a></p>
+   </section><!-- Footer -->
+   <footer>
+    <p>©️ 2026 Ferroviário · Cervejaria &amp; Marisqueira Portuguesa · Trofa</p>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      restaurant_name: 'o̱ Ferroviário',
+      restaurant_tagline: 'cervejaria & marisqueira',
+      slogan: 'A tua próxima paragem gastronómica.',
+      about_title: 'A Nossa História',
+      about_text: 'Durante décadas, este edifício foi um ponto de passagem, aqui cruzavam-se caminhos, histórias, partidas e regressos. Onde antes se esperava pelo próximo comboio, hoje espera-se apenas pelo próximo prato, onde antes se ouviam carris, hoje queremos que se ouçam brindes, conversas e risos. Este espaço, que fez parte da memória coletiva da Trofa, renasce agora como restaurante, mantendo a sua vocação original, ligar pessoas. Ligamos o mar à cidade, através de uma marisqueira de inspiração atlântica. Ligamos a tradição ao presente, com uma cervejaria pensada para partilhar. Ligamos o passado ao futuro, respeitando a história do lugar e criando novas memórias à mesa.\n\nBem-vindos a um antigo ponto de partida que agora é, acima de tudo, um destino.',
+      address: 'Alameda da Estação nº 85\nTrofa, Portugal',
+      phone: '252 414 190',
+      instagram_handle: '@oferroviario_',
+      testimonial_1_text: 'Uma experiência inesquecível, o atendimento foi perfeito e o marisco fresco.',
+      testimonial_1_author: 'João Silva',
+      testimonial_2_text: 'Voltamos sempre! A sapateira recheada é simplesmente extraordinária.',
+      testimonial_2_author: 'Maria Santos',
+      primary_color: '#3d2817',
+      secondary_color: '#7a5a47',
+      accent_color: '#d4c5b9',
+      text_color: '#3a3a38',
+      light_bg: '#faf8f5',
+      font_family: 'Crimson Text',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    async function onConfigChange(updatedConfig) {
+      config = { ...config, ...updatedConfig };
+
+      // Update text content
+      document.getElementById('nav-name').textContent = config.restaurant_name || defaultConfig.restaurant_name;
+      document.getElementById('hero-name').textContent = config.restaurant_name || defaultConfig.restaurant_name;
+      document.getElementById('hero-tagline').textContent = config.restaurant_tagline || defaultConfig.restaurant_tagline;
+      document.getElementById('hero-slogan').textContent = config.slogan || defaultConfig.slogan;
+      document.getElementById('about-title').textContent = config.about_title || defaultConfig.about_title;
+      document.getElementById('about-body').innerHTML = (config.about_text || defaultConfig.about_text).replace(/\n/g, '<br>');
+      document.getElementById('contact-phone').href = `tel:${config.phone ? config.phone.replace(/\s/g, '') : defaultConfig.phone.replace(/\s/g, '')}`;
+      document.getElementById('contact-phone').textContent = config.phone || defaultConfig.phone;
+      
+      const t1Text = document.getElementById('testimonial-1-text');
+      const t1Author = document.getElementById('testimonial-1-author');
+      const t2Text = document.getElementById('testimonial-2-text');
+      const t2Author = document.getElementById('testimonial-2-author');
+
+      if (t1Text) t1Text.textContent = config.testimonial_1_text || defaultConfig.testimonial_1_text;
+      if (t1Author) t1Author.textContent = config.testimonial_1_author || defaultConfig.testimonial_1_author;
+      if (t2Text) t2Text.textContent = config.testimonial_2_text || defaultConfig.testimonial_2_text;
+      if (t2Author) t2Author.textContent = config.testimonial_2_author || defaultConfig.testimonial_2_author;
+      
+      // Update Instagram links
+      const instagramHandle = config.instagram_handle || defaultConfig.instagram_handle;
+      const instagramUrl = instagramHandle.startsWith('http') ? instagramHandle : `https://instagram.com/${instagramHandle.replace('@', '')}`;
+      document.querySelectorAll('a[href*="instagram.com"]').forEach(link => {
+        link.href = instagramUrl;
+      });
+      if (document.getElementById('instagram-link')) {
+        document.getElementById('instagram-link').textContent = config.instagram_handle || defaultConfig.instagram_handle;
+      }
+
+      // Update colors
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const lightBg = config.light_bg || defaultConfig.light_bg;
+
+      // Hero background
+      document.querySelector('.hero').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 50%, ${primaryColor} 100%)`;
+
+      // Buttons
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.style.backgroundColor = primaryColor;
+        btn.style.borderColor = primaryColor;
+      });
+
+      document.querySelectorAll('.btn-primary:hover').forEach(btn => {
+        btn.style.backgroundColor = secondaryColor;
+      });
+
+      // Section dividers - green to brown gradient
+      document.querySelectorAll('.section-divider').forEach(div => {
+        div.style.background = `linear-gradient(to right, #112A16, #391C01)`;
+      });
+
+      // Text colors
+      document.querySelectorAll('.section-title').forEach(title => {
+        title.style.color = title.closest('.specialties') || title.closest('.contact') ? '#f5f0eb' : primaryColor;
+      });
+
+      // Gallery items - brown border with green top
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.style.borderColor = '#391C01';
+        item.style.borderTopColor = '#112A16';
+      });
+
+      // Info blocks - brown left, green top
+      document.querySelectorAll('.info-block').forEach(block => {
+        block.style.borderLeftColor = '#391C01';
+        block.style.borderTopColor = '#112A16';
+      });
+
+      document.querySelectorAll('.hours-item').forEach(item => {
+        item.style.backgroundColor = `rgba(17, 42, 22, 0.2)`;
+      });
+
+      // Social icons - brown border with green at bottom
+      document.querySelectorAll('.social-icon').forEach(icon => {
+        icon.style.borderColor = '#391C01';
+        icon.style.borderBottomColor = '#112A16';
+        icon.style.color = '#112A16';
+      });
+
+      // Fonts
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'Georgia, serif';
+      document.querySelectorAll('.restaurant-name, .section-title, .gallery-title, .info-value').forEach(el => {
+        el.style.fontFamily = `'${fontFamily}', ${baseFontStack}`;
+      });
+    }
+
+    function mapToCapabilities(currentConfig) {
+      return {
+        recolorables: [
+          {
+            get: () => currentConfig.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              currentConfig.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => currentConfig.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              currentConfig.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => currentConfig.text_color || defaultConfig.text_color,
+            set: (value) => {
+              currentConfig.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => currentConfig.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              currentConfig.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          },
+          {
+            get: () => currentConfig.light_bg || defaultConfig.light_bg,
+            set: (value) => {
+              currentConfig.light_bg = value;
+              window.elementSdk.setConfig({ light_bg: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => currentConfig.font_family || defaultConfig.font_family,
+          set: (value) => {
+            currentConfig.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => currentConfig.font_size || defaultConfig.font_size,
+          set: (value) => {
+            currentConfig.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(currentConfig) {
+      return new Map([
+        ['restaurant_name', currentConfig.restaurant_name || defaultConfig.restaurant_name],
+        ['restaurant_tagline', currentConfig.restaurant_tagline || defaultConfig.restaurant_tagline],
+        ['slogan', currentConfig.slogan || defaultConfig.slogan],
+        ['about_title', currentConfig.about_title || defaultConfig.about_title],
+        ['about_text', currentConfig.about_text || defaultConfig.about_text],
+        ['address', currentConfig.address || defaultConfig.address],
+        ['phone', currentConfig.phone || defaultConfig.phone],
+        ['instagram_handle', currentConfig.instagram_handle || defaultConfig.instagram_handle],
+        ['testimonial_1_text', currentConfig.testimonial_1_text || defaultConfig.testimonial_1_text],
+        ['testimonial_1_author', currentConfig.testimonial_1_author || defaultConfig.testimonial_1_author],
+        ['testimonial_2_text', currentConfig.testimonial_2_text || defaultConfig.testimonial_2_text],
+        ['testimonial_2_author', currentConfig.testimonial_2_author || defaultConfig.testimonial_2_author]
+      ]);
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+   // Navbar scroll effect + logo color swap
+    function updateNavbarAndLogo() {
+      const navbar = document.getElementById('navbar');
+      const logoImg = document.querySelector('#nav-logo-container img.nav-logo-img');
+      const onLightBackground = window.scrollY > 100;
+
+      if (navbar) {
+        if (onLightBackground) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+
+      if (logoImg) {
+        if (onLightBackground) {
+          logoImg.classList.remove('on-dark');
+          logoImg.classList.add('on-light');
+        } else {
+          logoImg.classList.remove('on-light');
+          logoImg.classList.add('on-dark');
+        }
+      }
+    }
+
+    window.addEventListener('scroll', updateNavbarAndLogo);
+    // Run once on load
+    updateNavbarAndLogo();
+
+    // Ao atualizar (F5), não ficar na secção do hash (#menu, etc.) — abrir sempre no topo
+    function scrollPageToTop() {
+      const app = document.querySelector('.app-wrapper');
+      if (app) app.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+    function stripHashAndGoTop() {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      scrollPageToTop();
+    }
+    document.addEventListener('DOMContentLoaded', stripHashAndGoTop);
+    window.addEventListener('load', stripHashAndGoTop);
+
+    // Section reveal on scroll (both directions)
+    const sections = document.querySelectorAll('section');
+    const scrollContainer = document.querySelector('.app-wrapper');
+    const navbar = document.getElementById('navbar');
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible');
+          } else {
+            entry.target.classList.remove('section-visible');
+          }
+        });
+      },
+      {
+        root: scrollContainer || null,
+        threshold: 0.2,
+        // Compensa a navbar fixa para evitar flicker no topo.
+        rootMargin: `-${navbarHeight}px 0px 0px 0px`
+      }
+    );
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+
+    // Center section for internal links (ex: "Ver Menu")
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const hash = link.getAttribute('href');
+        if (!hash || hash.length < 2) return;
+
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        e.preventDefault();
+        history.pushState(null, '', hash);
+
+        const navbar = document.getElementById('navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const scrollContainer = document.querySelector('.app-wrapper');
+
+        if (scrollContainer) {
+          const containerRect = scrollContainer.getBoundingClientRect();
+          const targetRect = target.getBoundingClientRect();
+          const targetCenter =
+            targetRect.top -
+            containerRect.top +
+            scrollContainer.scrollTop +
+            targetRect.height / 2;
+
+          const desiredTop =
+            targetCenter - scrollContainer.clientHeight / 2 + navbarHeight / 2;
+          const maxTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+          const clampedTop = Math.max(0, Math.min(desiredTop, maxTop));
+
+          scrollContainer.scrollTo({ top: clampedTop, behavior: 'smooth' });
+          return;
+        }
+
+        // Fallback: normal page scroll
+        const rect = target.getBoundingClientRect();
+        const top =
+          window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2 + navbarHeight / 2;
+        const max = document.body.scrollHeight - window.innerHeight;
+        const clamped = Math.max(0, Math.min(top, max));
+        window.scrollTo({ top: clamped, behavior: 'smooth' });
+      });
+    });
+
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d6a6e2202cb3129',t:'MTc3MjU1OTY2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
