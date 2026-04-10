@@ -420,9 +420,9 @@
       display: flex;
       gap: 1rem;
       width: max-content;
-      padding-left: calc(50% - 140px);
-      padding-right: calc(50% - 140px);
-      box-sizing: content-box;
+      padding-left: 0;
+      padding-right: 0;
+      box-sizing: border-box;
     }
 
     .gallery-slide {
@@ -439,6 +439,15 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Evita faixa vazia nas extremidades do scroll (center empurra a 1.ª/última para o meio) */
+    .gallery-slide:first-child {
+      scroll-snap-align: start;
+    }
+
+    .gallery-slide:last-child {
+      scroll-snap-align: end;
     }
 
     .gallery-image-wrapper {
@@ -641,6 +650,7 @@
     }
 
     .trustindex-widget-wrap {
+      position: relative;
       margin-top: -0.85rem;
       min-height: 120px;
     }
@@ -648,6 +658,27 @@
     /* TrustIndex costuma injectar wrappers com margem própria */
     .trustindex-widget-wrap > * {
       margin-top: 0 !important;
+    }
+
+    /* Elfsight: esconder promo "Free Google Reviews Widget" (link no DOM) */
+    .trustindex-widget-wrap a[href*="elfsight.com/google-reviews-widget"],
+    .trustindex-widget-wrap a[href*="elfsight.com/google-reviews"],
+    .trustindex-widget-wrap .eapps-widget-toolbar,
+    .trustindex-widget-wrap [class*="eapps-widget-toolbar"] {
+      display: none !important;
+    }
+
+    /* Cobrir faixa inferior (iframe/shadow: CSS externo não chega lá) */
+    .trustindex-widget-wrap::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3.25rem;
+      background: #faf8f5;
+      pointer-events: none;
+      z-index: 5;
     }
 
     @media (max-width: 1024px) {
@@ -852,27 +883,27 @@
       <div class="gallery-track">
        <article class="gallery-slide">
         <div class="gallery-image-wrapper">
-         <img src="Galeria/foto1.png" alt="Vista exterior do Ferroviário" class="gallery-image gallery-image-first" loading="lazy">
+         <img src="Galeria/web/foto1.jpg" alt="Vista exterior do Ferroviário" class="gallery-image gallery-image-first" width="675" height="960" decoding="async" loading="lazy">
         </div>
        </article>
        <article class="gallery-slide">
         <div class="gallery-image-wrapper">
-         <img src="Galeria/foto5.jpg" alt="Detalhe da sala e ambiente" class="gallery-image" loading="lazy">
+         <img src="Galeria/web/foto5.jpg" alt="Detalhe da sala e ambiente" class="gallery-image" width="640" height="960" decoding="async" loading="lazy">
         </div>
        </article>
        <article class="gallery-slide">
         <div class="gallery-image-wrapper">
-         <img src="Galeria/foto2.png" alt="Pormenor da esplanada do restaurante" class="gallery-image" loading="lazy">
+         <img src="Galeria/web/foto2.jpg" alt="Pormenor da esplanada do restaurante" class="gallery-image" width="607" height="960" decoding="async" loading="lazy">
         </div>
        </article>
        <article class="gallery-slide">
         <div class="gallery-image-wrapper">
-         <img src="foto10.jpg" alt="Mesa preparada com marisco e cerveja" class="gallery-image" loading="lazy">
+         <img src="Galeria/web/foto10.jpg" alt="Mesa preparada com marisco e cerveja" class="gallery-image" width="640" height="960" decoding="async" loading="lazy">
         </div>
        </article>
        <article class="gallery-slide">
         <div class="gallery-image-wrapper">
-         <img src="Galeria/foto6.jpg" alt="Detalhe do interior do antigo edifício da estação" class="gallery-image" loading="lazy">
+         <img src="Galeria/web/foto6.jpg" alt="Detalhe do interior do antigo edifício da estação" class="gallery-image" width="640" height="960" decoding="async" loading="lazy">
         </div>
        </article>
       </div>
@@ -891,8 +922,11 @@
     <div class="testimonials-inner">
      <h2 class="section-title">O que os clientes acham sobre nós</h2>
      <div class="section-divider"></div>
-     <div class="trustindex-widget-wrap"></div>
-     <script defer async src="https://cdn.trustindex.io/loader.js?28c69d468dec123656367d3fb52"></script>
+     <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+     <script src="https://elfsightcdn.com/platform.js" async></script>
+     <div class="trustindex-widget-wrap">
+      <div class="elfsight-app-2b2ab479-bf21-4665-b045-201b9186d94e" data-elfsight-app-lazy></div>
+     </div>
     </div>
    </section><!-- Contact Section -->
    <section class="contact" id="contact">
