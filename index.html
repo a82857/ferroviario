@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ferroviário - Marisqueira Portuguesa</title>
+  <link rel="preload" as="image" href="bg.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&amp;family=Inter:wght@300;400;500;600&amp;family=Lato:wght@300;400;500&amp;display=swap" rel="stylesheet">
@@ -16,7 +17,7 @@
     }
 
     :root {
-      /* Ajuste aqui a escuridão da imagem bg.png (0 = sem escurecer, 1 = muito escuro) */
+      /* Ajuste aqui a escuridão da imagem bg.jpg (0 = sem escurecer, 1 = muito escuro) */
       --hero-bg-darken: 0.55;
     }
 
@@ -50,7 +51,7 @@
       overflow: hidden;
       background:
         linear-gradient(135deg, rgba(61, 40, 23, 0.86) 0%, rgba(90, 61, 46, 0.86) 50%, rgba(42, 24, 16, 0.9) 100%),
-        url('bg.png');
+        url('bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1107,8 +1108,13 @@
       const textColor = config.text_color || defaultConfig.text_color;
       const lightBg = config.light_bg || defaultConfig.light_bg;
 
-      // Hero background
-      document.querySelector('.hero').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 50%, ${primaryColor} 100%)`;
+      // Hero background (gradiente + foto; mesmo stack que o CSS)
+      const heroEl = document.querySelector('.hero');
+      heroEl.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 50%, ${primaryColor} 100%), url('bg.jpg')`;
+      heroEl.style.backgroundSize = 'cover';
+      heroEl.style.backgroundPosition = 'center';
+      heroEl.style.backgroundRepeat = 'no-repeat';
+      heroEl.style.backgroundBlendMode = 'overlay';
 
       // Buttons
       document.querySelectorAll('.btn-primary').forEach(btn => {
